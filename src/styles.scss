@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+// @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+$active: #ff4081;
+
+@mixin imageWallpaper($image,$xPosition,$yPosition,$size){
+    background-image: $image;
+    background-position-x: $xPosition;
+    background-position-y: $yPosition;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: $size;
+}
+
+.bg-wallpaper-login{
+    background-blend-mode: darken;
+    background-color: rgba(0, 0, 0, 0.4);
+     @include imageWallpaper(url(./assets/wallpaper/montain.jpg),center,center,cover)
+}
+
+.top-0{
+    top: 0;
+}
+.left-0{
+    left: 0;
+}
+.z-index-1{
+    z-index: 1;
+}
+.active{
+    color: $active !important;
+}
+.cdk-overlay-container{
+    z-index: 2000 !important;
+}
+.px-10-rem {
+    padding: 10rem!important;
+}
+@media (max-width: 768px) {
+    .px-10-rem {
+        padding: 2rem!important;
+    }
+    
+}

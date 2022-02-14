@@ -1,0 +1,27 @@
+<div class="w-100  bg-wallpaper-login min-vh-100 d-flex justify-content-center align-items-center">
+    <form class="d-flex flex-column text-dark bg-light px-3 py-5 rounded align-items-center" [formGroup]="information">
+        <img src="../../../assets/icons/logo.png" class="rounded" width="150">
+        <h1 class="text-center">Welcome!</h1>
+        <!-- username -->
+        <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" formControlName="username">
+            <mat-icon matSuffix>account_circle</mat-icon>
+        </mat-form-field>
+        <!-- password -->
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password">
+            <mat-icon matSuffix>password</mat-icon>
+        </mat-form-field>
+        <!-- actions -->
+        <div class="d-flex justify-content-center">
+            <button mat-raised-button color="primary" (click)="save()" [disabled]="information.invalid || loading">
+                {{loading ? 'Checking':'Login'}}
+                <div class="spinner-grow text-light spinner-grow-sm" role="status" *ngIf="loading">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </button>
+        </div>
+    </form>
+</div>
