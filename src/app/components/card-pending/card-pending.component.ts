@@ -21,7 +21,7 @@ export class CardPendingComponent implements OnInit {
   // *****************
   public select=():void=>{
     
-    this.setData$.emit({value:this.data['patientId']})
+    this.setData$.emit({value:this.data})
   }
   // *****************
   // life cycles

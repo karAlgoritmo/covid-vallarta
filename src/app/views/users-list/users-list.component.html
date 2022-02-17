@@ -1,1 +1,87 @@
-<p>users-list works!</p>
+<nav-header></nav-header>
+<form class="mt-5 py-5 px-4 row mx-0 d-flex justify-content-center" [formGroup]="information">
+
+  <table class="table w-50">
+    <thead>
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">Password</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users;let i=index">
+        <td>
+          {{user.username}}
+        </td>
+        <td>
+          {{user.password}}
+        </td>
+        <td><button mat-button data-bs-toggle="modal" data-bs-target="#edit" (click)="setData(user)">
+            <mat-icon>edit</mat-icon>
+          </button></td>
+        <td><button mat-button (click)="delete(user,i)" *ngIf="!user.isAdmin">
+            <mat-icon>delete</mat-icon>
+          </button></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username" [disabled]="loading">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" [disabled]="loading">
+        </mat-form-field>
+      </td>
+      <td></td>
+      <td>
+        <!-- create -->
+        <button mat-raised-button color="primary" (click)="create()" [disabled]="information.invalid || loading">
+          {{loading ? 'Creating':'Create'}}
+          <div class="spinner-grow text-light spinner-grow-sm" role="status" *ngIf="loading">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </button>
+      </td>
+    </tfoot>
+  </table>
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form class="modal-body row mx-0" [formGroup]="informationUpdate">
+        <!-- username -->
+        <mat-form-field appearance="fill" class="col-12">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username" [disabled]="loading">
+        </mat-form-field>
+        <!-- password -->
+        <mat-form-field appearance="fill" class="col-12">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" [disabled]="loading">
+        </mat-form-field>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeUpdate">Close</button>
+        <button type="button" class="btn btn-primary" (click)="update()" [disabled]="informationUpdate.invalid || loading">
+          Save changes
+          <div class="spinner-grow text-light spinner-grow-sm" role="status" *ngIf="loading">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

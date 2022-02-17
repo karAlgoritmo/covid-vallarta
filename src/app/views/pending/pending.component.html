@@ -1,75 +1,83 @@
 <nav-header></nav-header>
 <button data-bs-toggle="modal" data-bs-target="#exampleModal" id="capture" class="d-none"></button>
 <div class="mt-5 py-5 px-4 row mx-0">
-    <div *ngFor="let patient of pending" class="p-2 col-sm-12 col-md-6 col-lg-3">
-        <card-pending [data]="patient" (setData$)="getSelected($event)"></card-pending>
+    <!-- filter -->
+    <div class="py-1">
+        <mat-form-field appearance="fill" class="p-2 col-sm-12 col-md-2">
+            <mat-label>Search</mat-label>
+            <input matInput type="search" [(ngModel)]="filter" (keyup)="search(filter)">
+        </mat-form-field>
+    </div>
+    <!-- cards -->
+    <div *ngFor="let patient of pending;let i=index" class="p-2 col-sm-12 col-md-6 col-lg-3">
+        <card-pending [data]="patient" (setData$)="getSelected($event,i)"></card-pending>
     </div>
 </div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Result Capture</h5>
+                <h3 class="modal-title" id="exampleModalLabel">Result Capture</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form class="modal-body row mx-0" [formGroup]="information" *ngIf="selected!={}">
+            <form class="modal-body row mx-0" [formGroup]="information" *ngIf="selected['patientId']">
                 <!-- name -->
                 <div class="p-2 d-flex flex-column align-items-start col-sm-12 col-md-6">
                     <small class="text-muted">Name</small>
-                    <span class="mb-0">{{selected.firstName}} {{selected.lastName}}</span>
+                    <span class="mb-0 h6">{{selected['patientId'].firstName}} {{selected['patientId'].lastName}}</span>
                 </div>
                 <!-- email -->
                 <div class="p-2 d-flex flex-column align-items-start col-sm-12 col-md-6">
                     <small class="text-muted">Email</small>
-                    <span class="mb-0">{{selected.email}}</span>
+                    <span class="mb-0 h6">{{selected['patientId'].email}}</span>
                 </div>
                 <!-- passport -->
                 <div class="p-2 d-flex flex-column align-items-start col-sm-12 col-md-6">
                     <small class="text-muted">Passport</small>
-                    <span class="mb-0">{{selected.passportNo}}</span>
+                    <span class="mb-0 h6">{{selected['patientId'].passportNo}}</span>
                 </div>
                 <!-- date of birth -->
                 <div class="p-2 d-flex flex-column align-items-start col-sm-12 col-md-6">
                     <small class="text-muted">Date of birth</small>
-                    <span class="mb-0">{{selected.dateOfBirth | date:'longDate'}}</span>
+                    <span class="mb-0 h6">{{selected['patientId'].dateOfBirth | date:'longDate'}}</span>
                 </div>
                 <!-- Date of sample -->
                 <mat-form-field appearance="fill" class="p-2 col-sm-12 col-md-6">
                     <mat-label>Date of sample</mat-label>
-                    <input matInput type="date" formControlName="dateOfSample">
+                    <input matInput type="date" formControlName="dateOfSample" [max]="information.value['dateReport']">
+                </mat-form-field>
+                <!-- hour of sample -->
+                <mat-form-field appearance="fill" class="p-2 col-sm-12 col-md-6">
+                    <mat-label>Hour of sample</mat-label>
+                    <input matInput type="time" formControlName="hourOfSample">
                 </mat-form-field>
                 <!-- Date of report -->
                 <mat-form-field appearance="fill" class="p-2 col-sm-12 col-md-6">
                     <mat-label>Date of report</mat-label>
-                    <input matInput type="date" formControlName="dateReport">
+                    <input matInput type="date" formControlName="dateReport" [min]="information.value['dateOfSample']">
                 </mat-form-field>
-                <!-- Type of sample -->
-                <mat-form-field appearance="fill" class="p-2 col-sm-12 col-md-4">
-                    <mat-label>Type of sample</mat-label>
-                    <input matInput type="text" formControlName="typeOfSample">
+                <!-- hour of report -->
+                <mat-form-field appearance="fill" class="p-2 col-sm-12 col-md-6">
+                    <mat-label>Hour of report</mat-label>
+                    <input matInput type="time" formControlName="hourReport">
                 </mat-form-field>
                 <!-- Result -->
-                <mat-form-field appearance="fill" class="p-2 col-sm-12 col-md-4">
+                <mat-form-field appearance="fill" class="p-2 col-sm-12 col-md-6">
                     <mat-label>Result</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="result">
                         <mat-option value="positive">Positive</mat-option>
                         <mat-option value="negative">Negative</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <!-- Result -->
-                <mat-form-field appearance="fill" class="p-2 col-sm-12 col-md-4">
-                    <mat-label>Reference Value</mat-label>
-                    <mat-select>
-                        <mat-option value="positive">Positive</mat-option>
-                        <mat-option value="negative">Negative</mat-option>
-                    </mat-select>
-                </mat-form-field>
+
             </form>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="save()">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    id="close-capture">Close</button>
+                <button type="button" class="btn btn-primary" (click)="save()" [disabled]="information.invalid">Save
+                    changes</button>
             </div>
         </div>
     </div>
