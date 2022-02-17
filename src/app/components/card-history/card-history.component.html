@@ -1,1 +1,40 @@
-<p>card-history works!</p>
+<div class="card text-center" *ngIf="data!={}">
+    <div class="card-header bg-dark text-light d-flex justify-content-between">
+        <button mat-flat-button color="primary" (click)="select()">Send Result</button>
+
+        <button mat-button class="mx-1">
+            <mat-icon matSuffix>delete</mat-icon>
+        </button>
+    </div>
+    <div class="card-body bg-light row mx-0">
+        <div class="p-2 d-flex flex-column align-items-start col-sm-12 col-md-12 col-lg-6">
+            <small class="text-muted">Name</small>
+            <span class="mb-0">{{data.patientId.firstName}} {{data.patientId.lastName}}</span>
+        </div>
+        <div class="p-2 d-flex flex-column align-items-start col-sm-12 col-md-12 col-lg-6">
+            <small class="text-muted">Result</small>
+            <span class="mb-0 text-uppercase">{{data.result}}</span>
+        </div>
+        <div class="p-2 d-flex flex-column align-items-start col-sm-12 col-md-12 col-lg-6">
+            <small class="text-muted">Email</small>
+            <span class="mb-0">{{data.patientId.email}}</span>
+        </div>
+        <div class="p-2 d-flex flex-column align-items-start col-sm-12 col-md-12 col-lg-6">
+            <small class="text-muted">Date Of Sample</small>
+            <span class="mb-0">{{data.dateOfSample | date:'medium'}}</span>
+        </div>
+        <div class="p-2 d-flex flex-column align-items-start col-sm-12 col-md-12 col-lg-6">
+            <small class="text-muted">Passport</small>
+            <span class="mb-0">{{data.patientId.passportNo}}</span>
+        </div>
+        <div class="p-2 d-flex flex-column align-items-start col-sm-12 col-md-12 col-lg-6">
+            <small class="text-muted">Date Of Report</small>
+            <span class="mb-0">{{data.dateOfReport | date:'medium'}}</span>
+        </div>
+        <div class="p-2 d-flex flex-column align-items-start col-sm-12 col-md-12 col-lg-6">
+            <small class="text-muted">Date of birth</small>
+            <span class="mb-0">{{data.patientId.dateOfBirth | date:'longDate'}}</span>
+        </div>
+
+    </div>
+</div>

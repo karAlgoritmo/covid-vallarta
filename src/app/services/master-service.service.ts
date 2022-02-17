@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios'
+import Swal from 'sweetalert2'
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +21,7 @@ export class MasterServiceService {
         callback(res)
       }
     }).catch(error => {
-
+      Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error' })
     })
   }
 
@@ -30,7 +31,7 @@ export class MasterServiceService {
         callback(res)
       }
     }).catch(error => {
-
+      Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error' })
     })
   }
 
@@ -40,7 +41,7 @@ export class MasterServiceService {
         callback(res)
       }
     }).catch(error => {
-
+      Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error' })
     })
   }
 
@@ -50,7 +51,7 @@ export class MasterServiceService {
         callback(res)
       }
     }).catch(error => {
-
+      Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error' })
     })
   }
 
@@ -58,7 +59,7 @@ export class MasterServiceService {
     axios.get(`${this.host}${action}`, this.headers).then(res => {
       callback(res)
     }).catch(error => {
-
+      Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error' })
     })
   }
   constructor() {

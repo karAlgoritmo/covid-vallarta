@@ -13,6 +13,8 @@ export class PendingComponent implements OnInit {
   // ***********************
   // variables
   // **********************
+  // field
+  public fieldFilters = ['firstName', 'lastName', 'passportNo', 'email']
   // 
   public filter: string = ''
   // 
@@ -21,6 +23,8 @@ export class PendingComponent implements OnInit {
   public loading = true
   //  
   public pending = []
+  // 
+  public allpending = []
   // form of login
   public information = new FormGroup({
     dateOfSample: new FormControl('', [Validators.required]),
@@ -32,22 +36,34 @@ export class PendingComponent implements OnInit {
   // ***********************
   // functions
   // **********************
+  // get all pending data
   public getData = (): void => {
     this.loading = true
     this.master.sendGet('reports/pending', res => {
       this.loading = false
       if (res.status == 200) {
         this.pending = res.data.reports
+        this.allpending = res.data.reports
       } else {
         Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
       }
     })
   }
-  // search
-  public search = (word:string) => {
-    word=word.toLowerCase()
+  // search pending data
+  public search = (word: string, event) => {
+    if (event.key == 'Enter') {
+      word = word.toLowerCase()
+      for (let index = 0; index < this.fieldFilters.length; index++) {
+        this.pending = this.allpending.filter(el => (el['patientId'][this.fieldFilters[index]].toLowerCase()).indexOf(word) >= 0 ||
+          word.indexOf((el['patientId'][this.fieldFilters[index]]).toLowerCase()) >= 0)
+        if (this.pending.length > 0) {
+          return
+        }
+      }
+    }
   }
-  // save
+
+  // capture result
   public save = (): void => {
     if (this.information.valid) {
       this.loading = true
@@ -71,9 +87,8 @@ export class PendingComponent implements OnInit {
         })
     }
   }
-  // 
+  // select a pending card
   public getSelected = (e, index): void => {
-    debugger
     this.selected['index'] = index
     this.selected = e.value;
     (document.getElementById('capture') as HTMLButtonElement).click()
