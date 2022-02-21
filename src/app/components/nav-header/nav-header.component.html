@@ -1,24 +1,32 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-fixed top-0 left-0 z-index-1 w-100 py-3 px-4">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link"  [routerLink]="[ '/pending']" routerLinkActive="active">Pending</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="[ '/captured']" routerLinkActive="active">Captured</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="[ '/reports']" routerLinkActive="active">Reports</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " [routerLink]="[ '/users']" routerLinkActive="active">Users</a>
-          </li>
-        </ul>
-      </div>
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="[ '/pending']" routerLinkActive="active">Pending</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="[ '/captured']" routerLinkActive="active">Captured</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="[ '/reports']" routerLinkActive="active">Reports</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " [routerLink]="[ '/users']" routerLinkActive="active">Users</a>
+        </li>
+      </ul>
+    </div>
+    <!-- logo and logout -->
+    <div>
+      <button mat-button [matMenuTriggerFor]="menu" class="text-white" *ngIf="store.user">{{store.user.username}}<mat-icon>expand_more</mat-icon></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item  (click)="logout()">Logout</button>
+      </mat-menu>
       <img src="../../../assets/icons/logo.png" class="rounded" width="40">
     </div>
-  </nav>
+  </div>
+</nav>

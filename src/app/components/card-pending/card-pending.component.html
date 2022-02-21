@@ -1,19 +1,19 @@
 <div class="card text-center" *ngIf="data!={}">
     <div class="card-header bg-dark text-light d-flex justify-content-between">
-        <button mat-flat-button color="accent" (click)="select()">Capture Result</button>
+        <button mat-flat-button color="accent" (click)="select(false)">Capture Result</button>
 
-        <button mat-button class="mx-1">
-            <mat-icon matSuffix>delete</mat-icon>
+        <button mat-button class="mx-1" (click)="select(true)">
+            <mat-icon matSuffix >delete</mat-icon>
         </button>
     </div>
     <div class="card-body bg-light">
         <div class="p-2 d-flex flex-column align-items-start">
             <small class="text-muted">Name</small>
-            <span class="mb-0">{{data.patientId.firstName}} {{data.patientId.lastName}}</span>
+            <span class="mb-0 text-capitalize">{{data.patientId.firstName}} {{data.patientId.lastName}}</span>
         </div>
         <div class="p-2 d-flex flex-column align-items-start">
             <small class="text-muted">Email</small>
-            <span class="mb-0">{{data.patientId.email}}</span>
+            <span class="mb-0 ">{{data.patientId.email}}</span>
         </div>
         <div class="p-2 d-flex flex-column align-items-start">
             <small class="text-muted">Passport</small>

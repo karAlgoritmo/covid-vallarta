@@ -39,7 +39,7 @@ export class DataUserComponent implements OnInit {
           Swal.fire({ title: 'Complete', text: 'Registration Success !', icon: 'success', confirmButtonText: 'Ok' })
           this.information.reset()
         }else{
-          Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
+          Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
         }
       })
     }

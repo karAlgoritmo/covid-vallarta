@@ -31,7 +31,11 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 // QR
-import {NgxQRCodeModule} from '@techiediaries/ngx-qrcode'
+import {NgxQRCodeModule} from '@techiediaries/ngx-qrcode';
+import { BarComponent } from './graphics/bar/bar.component';
+import { PieComponent } from './graphics/pie/pie.component';
+import { LineComponent } from './graphics/line/line.component'
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -46,7 +50,10 @@ import {NgxQRCodeModule} from '@techiediaries/ngx-qrcode'
     CardPendingComponent,
     NavHeaderComponent,
     CardHistoryComponent,
-    GraphicComponent
+    GraphicComponent,
+    BarComponent,
+    PieComponent,
+    LineComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +69,8 @@ import {NgxQRCodeModule} from '@techiediaries/ngx-qrcode'
     MatRadioModule,
     NgxQRCodeModule,
     MatDatepickerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule
   ],
   providers: [MasterServiceService,StoreService],
   bootstrap: [AppComponent]

@@ -17,9 +17,8 @@ export class CardHistoryComponent implements OnInit {
   // *****************
   // functions
   // *****************
-  public select=():void=>{
-    
-    this.setData$.emit({value:this.data})
+  public select=(isDelete:boolean):void=>{
+    this.setData$.emit({value:this.data,isDelete:isDelete})
   }
   // *****************
   // life cycles

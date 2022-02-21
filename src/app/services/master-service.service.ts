@@ -17,11 +17,9 @@ export class MasterServiceService {
 
   public sendPost = (action, params, callback) => {
     axios.post(`${this.host}${action}`, params, this.headers).then(res => {
-      if (res) {
-        callback(res)
-      }
+      callback(res)
     }).catch(error => {
-      Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error' })
+      Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error' })
     })
   }
 
@@ -31,7 +29,7 @@ export class MasterServiceService {
         callback(res)
       }
     }).catch(error => {
-      Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error' })
+      Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error' })
     })
   }
 
@@ -41,7 +39,7 @@ export class MasterServiceService {
         callback(res)
       }
     }).catch(error => {
-      Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error' })
+      Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error' })
     })
   }
 
@@ -51,7 +49,7 @@ export class MasterServiceService {
         callback(res)
       }
     }).catch(error => {
-      Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error' })
+      Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error' })
     })
   }
 
@@ -59,7 +57,7 @@ export class MasterServiceService {
     axios.get(`${this.host}${action}`, this.headers).then(res => {
       callback(res)
     }).catch(error => {
-      Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error' })
+      Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error' })
     })
   }
   constructor() {

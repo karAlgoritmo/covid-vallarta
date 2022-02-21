@@ -45,7 +45,7 @@ export class PendingComponent implements OnInit {
         this.pending = res.data.reports
         this.allpending = res.data.reports
       } else {
-        Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
+        Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
       }
     })
   }
@@ -82,7 +82,7 @@ export class PendingComponent implements OnInit {
             Swal.fire({ title: 'Capture Success!', text: res.message, icon: 'success', confirmButtonText: 'Ok' })
             this.information.reset();
           } else {
-            Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
+            Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
           }
         })
     }
@@ -91,8 +91,37 @@ export class PendingComponent implements OnInit {
   public getSelected = (e, index): void => {
     this.selected['index'] = index
     this.selected = e.value;
-    (document.getElementById('capture') as HTMLButtonElement).click()
+    if (e.isDelete) {
+      
+      this.delete(this.selected['_id'])
+    } else {
+      (document.getElementById('capture') as HTMLButtonElement).click()
+    }
   }
+  // quest delete
+  public delete = (id: number): void => {
+    Swal.fire({
+      title: 'Are you sure to delete this pending report?',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.loading = true
+        
+        this.master.sendDelete('reports/delete', id, res => {
+            this.loading = false
+            if (res.status == 200) {
+              this.pending.splice(this.selected['index'], 1);
+              Swal.fire({ title: 'Delete Success!', text: res.message, icon: 'success', confirmButtonText: 'Ok' })
+            } else {
+              Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
+            }
+          })
+      }
+    })
+  }
+
   // ***********************
   // life cycles
   // **********************

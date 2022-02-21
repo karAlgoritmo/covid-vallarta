@@ -15,7 +15,12 @@ export class NavHeaderComponent implements OnInit {
       }
     })
   }
-  constructor(private master:MasterServiceService,private store:StoreService) { }
+  // 
+  public logout=():void=>{
+    localStorage.removeItem('token')
+    location.href=""
+  }
+  constructor(private master:MasterServiceService,public store:StoreService) { }
 
   ngOnInit(): void {
     

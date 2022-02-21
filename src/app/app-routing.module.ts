@@ -10,7 +10,7 @@ import { ReportsComponent } from './views/reports/reports.component';
 import { UsersListComponent } from './views/users-list/users-list.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
   { path: 'patient', component: DataUserComponent },
   { path: 'pending', component: PendingComponent },
   { path: 'captured', component: HistoryComponent },

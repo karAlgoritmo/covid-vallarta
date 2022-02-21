@@ -36,7 +36,7 @@ export class HistoryComponent implements OnInit {
         this.captured = res.data.reports
         this.allCaptured = res.data.reports
       } else {
-        Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
+        Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
       }
     })
   }
@@ -44,7 +44,11 @@ export class HistoryComponent implements OnInit {
   public getSelected = (e, index): void => {
     this.selected['index'] = index
     this.selected = e.value;
-    (document.getElementById('capture') as HTMLButtonElement).click()
+    if(e.isDelete){
+      this.delete(this.selected['_id'])
+    }else{
+      (document.getElementById('capture') as HTMLButtonElement).click()
+    }
   }
   // search pending data
   public search = (word: string, event) => {
@@ -58,6 +62,51 @@ export class HistoryComponent implements OnInit {
         }
       }
     }
+  }
+  // quest delete
+  public delete = (id: number): void => {
+    Swal.fire({
+      title: 'Are you sure to delete this capture report?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Replace`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.deleteHard(id)
+      } else if (result.isDenied) {
+        this.deleteSoft(id)
+      }
+    })
+  }
+  // delete
+  public deleteHard = (id) => {
+    this.loading = true
+    debugger
+    this.master.sendDelete('reports/delete',id, res => {
+        this.loading = false
+        if (res.status == 200) {
+          this.captured.splice(this.selected['index'], 1);
+          Swal.fire({ title: 'Delete Success!', text: res.data.message, icon: 'success', confirmButtonText: 'Ok' })
+        } else {
+          Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
+        }
+      })
+  }
+  // delete
+  public deleteSoft = (id) => {
+    this.loading = true
+    debugger
+    this.master.sendPost('reports/soft-delete',{id:id}, res => {
+        this.loading = false
+        if (res.status == 200) {
+          this.captured.splice(this.selected['index'], 1);
+          Swal.fire({ title: 'Delete Success!', text: res.data.message, icon: 'success', confirmButtonText: 'Ok' })
+        } else {
+          Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
+        }
+      })
   }
   // ***********************
   // life  cycles

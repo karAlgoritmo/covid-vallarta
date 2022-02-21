@@ -43,7 +43,7 @@ export class UsersListComponent implements OnInit {
       if (res.status == 200) {
         this.users = res.data.users
       } else {
-        Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
+        Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
       }
     })
   }
@@ -57,7 +57,7 @@ export class UsersListComponent implements OnInit {
         Swal.fire({ title: 'Update Success!', text: res.data.message, icon: 'success', confirmButtonText: 'Ok' })
         this.getData()
       } else {
-        Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
+        Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
       }
     })
   }
@@ -71,7 +71,7 @@ export class UsersListComponent implements OnInit {
         this.users.push({ ...res.data.user })
         this.information.reset()
       } else {
-        Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
+        Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
       }
     })
   }
@@ -89,7 +89,7 @@ export class UsersListComponent implements OnInit {
             Swal.fire('Deleted!', '', 'success')
             this.users.splice(index,1)
           } else {
-            Swal.fire({ title: 'Ups!', text: 'Something were wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
+            Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
           }
         })
         
