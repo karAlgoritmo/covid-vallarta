@@ -1,6 +1,6 @@
 <div class="card text-center h-100" *ngIf="data!={}">
     <div class="card-header bg-dark text-light d-flex justify-content-between">
-        <button mat-flat-button color="primary" (click)="select(false)">Send Result</button>
+        <a mat-flat-button color="primary" (click)="select(false)" href="/pdf" target="_blank">Send Result</a>
 
         <button mat-button class="mx-1" (click)="select(true)">
             <mat-icon matSuffix>delete</mat-icon>

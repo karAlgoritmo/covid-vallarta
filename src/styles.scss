@@ -35,11 +35,26 @@ $active: #ff4081;
     z-index: 2000 !important;
 }
 .px-10-rem {
-    padding: 10rem!important;
+    padding: 3rem 10rem!important;
 }
-@media (max-width: 768px) {
+.qr-code{
+    img{height: 150px;}
+}
+@media (max-width: 1024px) {
     .px-10-rem {
-        padding: 2rem!important;
+        padding: 1rem!important;
     }
-    
+    .responsive-p-5{
+        padding: 0.5rem!important;
+    }
+    .image-responsive{
+        height: 80px;
+    }
+    .text-responsive{
+        b{font-size: 0.7rem;}
+        label,small,span,p{font-size: 0.6rem;}
+    }
+    .justify-content-center-sm{
+        justify-content: center !important;
+    }
 }

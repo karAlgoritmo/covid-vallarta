@@ -13,7 +13,7 @@ import * as htmlToImage from 'html-to-image';
   styleUrls: ['./pdfs.component.scss']
 })
 export class PdfsComponent implements OnInit {
-  value = "https://cgonzalez-uy.medium.com/angular-como-construir-c%C3%B3digos-qr-eb2badcb3cde"
+  value = "http://localhost:4200/pdf/1"
   error = NgxQrcodeErrorCorrectionLevels.HIGH
   type = NgxQrcodeElementTypes.URL
   // 

@@ -1,12 +1,12 @@
-<div class="py-5 px-10-rem alert-secondary min-vh-100">
-    <div class="p-5 bg-white" id="MyDIv" >
+<div class=" px-10-rem  alert-secondary min-vh-100">
+    <div class="p-5 bg-white responsive-p-5" id="MyDIv" >
         <!-- general information -->
         <section class="row mx-0 justify-content-between ">
-            <div class="col-6">
-                <img src="../../../assets/icons/logo.png" height="120" class="logo">
+            <div class="col-4 px-0">
+                <img src="../../../assets/icons/logo.png" height="120" class="logo image-responsive">
             </div>
-            <div class="d-flex flex-column align-items-center col-6">
-                <b class="mb-0 h4 text-end">Doctor Puerto Vallarta</b>
+            <div class="d-flex flex-column align-items-center col-8 text-responsive px-0">
+                <b class="mb-0 h4 text-end w-100">Doctor Puerto Vallarta</b>
                 <label class="mb-0 w-100 text-end">Lázaro Cárdenas 270</label>
                 <label class="mb-0 w-100 text-end">Col. Emiliano Zapata, CP 48380</label>
                 <label class="mb-0 w-100 text-end">Puerto Vallarta, Jalisco</label>
@@ -14,13 +14,13 @@
             </div>
         </section>
         <!-- results -->
-        <section class="d-flex justify-content-between row mx-0 py-5 ">
-            <div class="d-flex flex-column align-items-center col-sm-12 col-md-6 ">
-                <!-- patient -->
-                <div class="row mx-0 justify-content-between w-100 py-1">
-                    <b class="col-sm-12 col-md-6">Patient:</b>
-                    <b class="col-sm-12 col-md-6">CHARLES THOMAS MC SWEENEY JR</b>
-                </div>
+        <section class="d-flex justify-content-between row mx-0 py-5 align-items-start text-responsive">
+            <!-- patient -->
+            <div class="row mx-0 justify-content-between col-12 py-1">
+                <b class="col-sm-12 ">Patient:</b>
+                <b class="col-sm-12">CHARLES THOMAS MC SWEENEY JR</b>
+            </div>
+            <div class="d-flex flex-column align-items-center col-6 ">
                 <!-- date of birth -->
                 <div class="row mx-0 justify-content-between w-100 py-1">
                     <b class="col-sm-12 col-md-6">Date of Birth:</b>
@@ -42,7 +42,7 @@
                     <span class="col-sm-12 col-md-6 ">558294516</span>
                 </div>
             </div>
-            <div class="d-flex flex-column align-items-center col-sm-12 col-md-6 ">
+            <div class="d-flex flex-column align-items-center col-6 ">
                 <!-- Lab ID Number -->
                 <div class="row mx-0 justify-content-between w-100 py-1">
                     <b class="col-sm-12 col-md-6 ">Lab ID Number:</b>
@@ -66,47 +66,52 @@
             </div>
         </section>
         <!-- sample -->
-        <section class="row mx-0 justify-content-center">
+        <section class="row mx-0 justify-content-center text-responsive">
             <div class="border border-start-0 border-bottom-0 col-sm-8
             border-end-0 d-flex justify-content-center py-2 border-4 border-dark">
                 <b>SARS-CoV-2 QUALITATIVE OF THE ANTIGEN (Ag)</b>
             </div>
-            <div class="row mx-0 justify-content-between">
+            <div class="row mx-0 justify-content-between align-items-start text-responsive">
                 <!-- sample -->
-                <div class="row mx-0 col-sm-12 col-md-4 px-0 text-center py-4">
+                <div class="row mx-0 col-4 px-0 text-center py-4">
                     <label class="border border-top-0 border-start-0 h6
                     border-end-0 border-4 border-dark">Sample</label>
-                    <label class="pt-5">Sars-CoV-2 Antigen (Ag)</label>
+                    <label class="pt-3">Sars-CoV-2 Antigen (Ag)</label>
                 </div>
                 <!-- result -->
-                <div class="row mx-0 col-sm-12 col-md-4 px-0 text-center py-4">
+                <div class="row mx-0 col-4 px-0 text-center py-4">
                     <label class="border border-top-0 border-start-0 h6
                     border-end-0 border-4 border-dark">Result</label>
-                    <label class="pt-5">NEGATIVE</label>
+                    <label class="pt-3">NEGATIVE</label>
                 </div>
                 <!-- sample -->
-                <div class="row mx-0 col-sm-12 col-md-4 px-0 text-center py-4">
+                <div class="row mx-0 col-4 px-0 text-center py-4">
                     <label class="border border-top-0 border-start-0 h6
                     border-end-0 border-4 border-dark">Reference Value</label>
-                    <label class="pt-5">NEGATIVE</label>
+                    <label class="pt-3">NEGATIVE</label>
                 </div>
             </div>
             <label for="" class="my-2 border border-top-0 border-start-0 h6
-            border-end-0 border-2">Method: IMMUNNOCHROMATOGRAPH</label>
-            <p>The test provides premilimary analysis results.
+            border-end-0 border-2">Method: Immunochromatograph</label>
+            <p>The test provides preliminary analysis results.
                 Negative results do not exclude SARS-CoV-2 infection and
                 cannot be used as the sole basis for treatment or other
                 management decisions. Negative results should be combined
                 with clinical observations, patient history,
                 and epidemiological information.</p>
         </section>
-        <!-- form -->
-        <section class="d-flex w-100 justify-content-center py-5">
-            <img src="../../../assets/icons/firm.png" height="100">
+        <!-- firm -->
+        <section class="row mx-0 justify-content-center py-5">
+            <div class="col-sm-12  d-flex justify-content-center">
+                <img src="../../../assets/icons/firm.png" height="100">
+            </div>
+            <div class="col-sm-12  d-flex justify-content-center-sm justify-content-start">
+                <ngx-qrcode [elementType]="type" [value]="value" [errorCorrectionLevel]="error" class="qr-code"></ngx-qrcode>
+            </div>
         </section>
         <!-- footer -->
-        <section class="row mx-0 justify-content-between ">
-            <div class="d-flex flex-column align-items-center col-6">
+        <section class="row mx-0 justify-content-between align-items-end">
+            <div class="d-flex flex-column align-items-center col-8 text-responsive px-0">
                 <small class="text-left w-100">Doctor Puerto Vallarta</small>
                 <small class="text-left w-100 text-primary">www.doctorpuertovallarta.com</small>
                 <small class="text-left w-100 text-primary">support@doctorpuertovallarta.com</small>
@@ -114,19 +119,15 @@
                 <small class="text-left w-100">Lázaro Cárdenas 270, zona Romántica,
                     Col. Emiliano Zapata, CP 48380.</small>
             </div>
-            <div class="col-6 d-flex justify-content-end">
-                <img id="image" src="../../../assets/icons/logo.png" height="120" class="logo">
+            <div class="col-4 d-flex justify-content-end align-items-end px-0">
+                <img id="image" src="../../../assets/icons/logo.png" height="120" class="logo  image-responsive">
             </div>
         </section>
     </div>
-    <button (click)="generateImage()">perro</button>
-    <!-- <button (click)="captureScreen()"> foto</button> -->
+    <!-- button -->
+    <div class="d-flex justify-content-end py-2">
+        <button (click)="generateImage()" mat-raised-button color="primary">Send Email
+            <mat-icon>send</mat-icon>
+        </button>
+    </div>
 </div>
-
-<!-- <div id="MyDIv" style="margin-left: 45px;" class="main-container">
-    <p>pending works!</p>
-    <ngx-qrcode [elementType]="type" [value]="value" [errorCorrectionLevel]="error">
-    
-    </ngx-qrcode>
-</div>
-<button (click)="generateImage()">PDF</button> -->
