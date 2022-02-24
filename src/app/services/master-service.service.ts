@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios'
 import Swal from 'sweetalert2'
+// import * as dotenv from 'dotenv/config'
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +11,7 @@ export class MasterServiceService {
   // *******************
   public token = ''
   public headers: object = { headers: { 'Content-Type': 'application/json', "Authorization": this.token } }
-  private host: string = "http://20.0.0.127:8080/"
+  private host: string = "https://covid-reports-aczl4.ondigitalocean.app/"
   // ********************
   // functions
   // *******************
@@ -61,6 +62,7 @@ export class MasterServiceService {
     })
   }
   constructor() {
+   
     this.token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
     this.headers = { headers: { 'Content-Type': 'application/json', "Authorization": this.token } }
 

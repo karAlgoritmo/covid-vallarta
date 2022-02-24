@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'patient', component: DataUserComponent },
   { path: 'pending', component: PendingComponent },
   { path: 'captured', component: HistoryComponent },
-  { path: 'pdf', component: PdfsComponent },
+  { path: 'pdf/:id', component: PdfsComponent },
   { path: 'reports', component: ReportsComponent },
   { path: 'users', component: UsersListComponent },
 ];
