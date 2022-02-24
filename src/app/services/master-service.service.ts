@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios'
 import Swal from 'sweetalert2'
-// import * as dotenv from 'dotenv/config'
+// import * as dotenv from 'dotenv'
+// let x=require('dotenv')
 @Injectable({
   providedIn: 'root'
 })
@@ -35,7 +36,7 @@ export class MasterServiceService {
   }
 
   public sendDelete = (action, params, callback) => {
-    axios.delete(`${this.host}${action}/${params}`,  this.headers).then(res => {
+    axios.delete(`${this.host}${action}/${params}`, this.headers).then(res => {
       if (res) {
         callback(res)
       }
@@ -62,7 +63,7 @@ export class MasterServiceService {
     })
   }
   constructor() {
-   
+    debugger
     this.token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
     this.headers = { headers: { 'Content-Type': 'application/json', "Authorization": this.token } }
 

@@ -1,5 +1,5 @@
 <div class=" px-10-rem  alert-secondary min-vh-100">
-    <div class="p-5 bg-white responsive-p-5" id="MyDIv" >
+    <div class="p-5 bg-white responsive-p-5" id="MyDIv" *ngIf="data['result']">
         <!-- general information -->
         <section class="row mx-0 justify-content-between ">
             <div class="col-4 px-0">
@@ -18,50 +18,50 @@
             <!-- patient -->
             <div class="row mx-0 justify-content-between col-12 py-1">
                 <b class="col-sm-12 ">Patient:</b>
-                <b class="col-sm-12">CHARLES THOMAS MC SWEENEY JR</b>
+                <b class="col-sm-12 text-uppercase">{{data.patientId.firstName}} {{data.patientId.lastName}}</b>
             </div>
             <div class="d-flex flex-column align-items-center col-6 ">
                 <!-- date of birth -->
                 <div class="row mx-0 justify-content-between w-100 py-1">
                     <b class="col-sm-12 col-md-6">Date of Birth:</b>
-                    <span class="col-sm-12 col-md-6">23 APR 1970</span>
+                    <span class="col-sm-12 col-md-6">{{data.patientId.dateOfBirth | date:'mediumDate'}}</span>
                 </div>
                 <!-- gender -->
                 <div class="row mx-0 justify-content-between w-100 py-1">
                     <b class="col-sm-12 col-md-6">Gender:</b>
-                    <span class="col-sm-12 col-md-6">M</span>
+                    <span class="col-sm-12 col-md-6">{{data.patientId.gender?'M':'F' }}</span>
                 </div>
                 <!-- ROOM -->
                 <div class="row mx-0 justify-content-between w-100 py-1">
                     <b class="col-sm-12 col-md-6">Room:</b>
-                    <span class="col-sm-12 col-md-6">PEIR 57</span>
+                    <span class="col-sm-12 col-md-6">{{data}}</span>
                 </div>
                 <!-- Passport -->
                 <div class="row mx-0 justify-content-between w-100 py-1">
                     <b class="col-sm-12 col-md-6 ">Passport Number:</b>
-                    <span class="col-sm-12 col-md-6 ">558294516</span>
+                    <span class="col-sm-12 col-md-6 ">{{data.patientId.passportNo}}</span>
                 </div>
             </div>
             <div class="d-flex flex-column align-items-center col-6 ">
                 <!-- Lab ID Number -->
                 <div class="row mx-0 justify-content-between w-100 py-1">
                     <b class="col-sm-12 col-md-6 ">Lab ID Number:</b>
-                    <b class="col-sm-12 col-md-6 ">22841</b>
+                    <b class="col-sm-12 col-md-6 ">{{data.labIdNo}}</b>
                 </div>
                 <!-- Date/Time of sample -->
                 <div class="row mx-0 justify-content-between w-100 py-1">
                     <b class="col-sm-12 col-md-6 ">Date/Time of sample:</b>
-                    <span class="col-sm-12 col-md-6 ">23 APR 1970 <b>HRS</b> 11:00</span>
+                    <span class="col-sm-12 col-md-6 ">{{data.dateOfSample | date:'medium'}}</span>
                 </div>
                 <!-- Date/Time of report -->
                 <div class="row mx-0 justify-content-between w-100 py-1">
                     <b class="col-sm-12 col-md-6 ">Date/Time of report:</b>
-                    <span class="col-sm-12 col-md-6 ">23 APR 1970 <b>HRS</b> 11:00</span>
+                    <span class="col-sm-12 col-md-6 ">{{data.dateOfReport | date:'medium'}}</span>
                 </div>
                 <!-- ROOM -->
                 <div class="row mx-0 justify-content-between w-100 py-1">
                     <b class="col-sm-12 col-md-6 ">Sample:</b>
-                    <span class="col-sm-12 col-md-6 ">Nasopharyngeal Exudates</span>
+                    <span class="col-sm-12 col-md-6 ">{{data.sample}}</span>
                 </div>
             </div>
         </section>
@@ -82,13 +82,13 @@
                 <div class="row mx-0 col-4 px-0 text-center py-4">
                     <label class="border border-top-0 border-start-0 h6
                     border-end-0 border-4 border-dark">Result</label>
-                    <label class="pt-3">NEGATIVE</label>
+                    <label class="pt-3 text-uppercase">{{data.result}}</label>
                 </div>
                 <!-- sample -->
                 <div class="row mx-0 col-4 px-0 text-center py-4">
                     <label class="border border-top-0 border-start-0 h6
                     border-end-0 border-4 border-dark">Reference Value</label>
-                    <label class="pt-3">NEGATIVE</label>
+                    <label class="pt-3">{{data.referenceValue}}</label>
                 </div>
             </div>
             <label for="" class="my-2 border border-top-0 border-start-0 h6

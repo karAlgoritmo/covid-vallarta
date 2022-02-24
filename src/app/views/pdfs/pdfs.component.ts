@@ -15,7 +15,7 @@ import * as htmlToImage from 'html-to-image';
 })
 export class PdfsComponent implements OnInit {
   public id=''
-  public value = "http://localhost:4200/pdf/1"
+  public value = ""
   public error = NgxQrcodeErrorCorrectionLevels.HIGH
   public type = NgxQrcodeElementTypes.URL
   public data={}
@@ -92,7 +92,7 @@ export class PdfsComponent implements OnInit {
     private route: ActivatedRoute,
     public master: MasterServiceService,
   ) {
-    
+    this.value=window.location.href
     this.getData(this.route.snapshot.params["id"])
    }
 
