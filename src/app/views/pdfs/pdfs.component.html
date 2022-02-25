@@ -1,7 +1,7 @@
 <div class=" px-10-rem  alert-secondary min-vh-100">
     <div class="p-5 bg-white responsive-p-5" id="MyDIv" *ngIf="data['result']">
         <!-- general information -->
-        <section class="row mx-0 justify-content-between ">
+        <section class="px-4 row mx-0 justify-content-between ">
             <div class="col-4 px-0">
                 <img src="../../../assets/icons/logo.png" height="120" class="logo image-responsive">
             </div>
@@ -30,11 +30,6 @@
                 <div class="row mx-0 justify-content-between w-100 py-1">
                     <b class="col-sm-12 col-md-6">Gender:</b>
                     <span class="col-sm-12 col-md-6">{{data.patientId.gender?'M':'F' }}</span>
-                </div>
-                <!-- ROOM -->
-                <div class="row mx-0 justify-content-between w-100 py-1">
-                    <b class="col-sm-12 col-md-6">Room:</b>
-                    <span class="col-sm-12 col-md-6">{{data}}</span>
                 </div>
                 <!-- Passport -->
                 <div class="row mx-0 justify-content-between w-100 py-1">
@@ -105,7 +100,7 @@
             <div class="col-sm-12  d-flex justify-content-center">
                 <img src="../../../assets/icons/firm.png" height="100">
             </div>
-            <div class="col-sm-12  d-flex justify-content-center-sm justify-content-start">
+            <div class="col-sm-12 px-0 d-flex justify-content-center-sm justify-content-start">
                 <ngx-qrcode [elementType]="type" [value]="value" [errorCorrectionLevel]="error" class="qr-code"></ngx-qrcode>
             </div>
         </section>
@@ -125,9 +120,12 @@
         </section>
     </div>
     <!-- button -->
-    <div class="d-flex justify-content-end py-2">
-        <button (click)="generateImage()" mat-raised-button color="primary">Send Email
+    <div class="d-flex justify-content-end py-2" >
+        <button (click)="sendEmail()" mat-raised-button color="primary" [disabled]="loading">Send Email
             <mat-icon>send</mat-icon>
+            <div class="spinner-grow text-light spinner-grow-sm" role="status" *ngIf="loading">
+                <span class="visually-hidden">Loading...</span>
+            </div>
         </button>
     </div>
 </div>

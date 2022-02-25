@@ -1,5 +1,5 @@
 <nav-header></nav-header>
-<div class="row mx-0 py-5 px-4 mt-5">
+<div class="row mx-0 py-5 px-4 mt-5" *ngIf="data['stepChart'] && data['stepChart'].length>0">
     <!-- range -->
     <div class="col-12 px-4">
         <select class="form-control w-25" (change)="changeRange()" [(ngModel)]="rangeSelected">
@@ -40,7 +40,14 @@
             [data]="data['pieChart']" [value]="'value'"></pie>
     </section>
     <section class="col-sm-12 col-md-6 d-flex align-items-center justify-content-center flex-column">
-        <h3 class="mb-0 text-center text-muted fs-3 py-2 w-50 ">Pandemic Trend</h3>
+        <h3 class="mb-0 text-center text-muted fs-3 py-2 w-50 ">Work Load</h3>
         <line *ngIf="data['stepChart'] && !loading" [id]="'workLoad'" class="col-sm-12" [data]="data['stepChart']" [value]="'value'" [category]="'date'"></line>
     </section>
 </div>
+
+<!-- no cards -->
+<section class="w-100 min-vh-100 d-flex justify-content-center align-items-center" *ngIf="!data['stepChart']">
+    <h1 class="fs-1">{{loading?'Loading...':'No Reports Captured'}}</h1>
+    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status" *ngIf="loading">
+    </div>
+</section>

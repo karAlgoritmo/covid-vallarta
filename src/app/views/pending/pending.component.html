@@ -1,6 +1,6 @@
 <nav-header></nav-header>
 <button data-bs-toggle="modal" data-bs-target="#exampleModal" id="capture" class="d-none"></button>
-<div class="mt-5 py-5 px-4 row mx-0">
+<section class="mt-5 py-5 px-4 row mx-0" *ngIf="pending.length>0">
     <!-- filter -->
     <div class="py-1">
         <mat-form-field appearance="fill" class="p-2 col-sm-12 col-md-2">
@@ -12,7 +12,14 @@
     <div *ngFor="let patient of pending;let i=index" class="p-2 col-sm-12 col-md-6 col-lg-3">
         <card-pending [data]="patient" (setData$)="getSelected($event,i)"></card-pending>
     </div>
-</div>
+
+</section>
+<!-- no cards -->
+<section class="w-100 min-vh-100 d-flex justify-content-center align-items-center" *ngIf="pending.length==0">
+    <h1 class="fs-1">{{loading?'Loading...':'No Reports Pending'}}</h1>
+    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status" *ngIf="loading">
+    </div>
+</section>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -75,9 +82,13 @@
             </form>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                    id="close-capture">Close</button>
-                <button type="button" class="btn btn-primary" (click)="save()" [disabled]="information.invalid">Save
-                    changes</button>
+                    id="close-capture" [disabled]="loading">Close</button>
+                <button type="button" class="btn btn-primary" (click)="save()" [disabled]="information.invalid || loading">
+                    {{loading ? 'Saving':'Save'}}
+                <div class="spinner-grow text-light spinner-grow-sm" role="status" *ngIf="loading">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                </button>
             </div>
         </div>
     </div>

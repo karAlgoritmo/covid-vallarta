@@ -75,24 +75,39 @@ export class PendingComponent implements OnInit {
           dateOfReport: this.information.value['dateReport'] + 'T' + this.information.value['hourReport'],
           capturedBy: this.store.user['userId']
         }, res => {
-          this.loading = false
           if (res.status == 200) {
-            this.pending.splice(this.selected['index'], 1);
-            (document.getElementById('close-capture') as HTMLButtonElement).click();
-            Swal.fire({ title: 'Capture Success!', text: res.message, icon: 'success', confirmButtonText: 'Ok' })
-            this.information.reset();
+            // send email
+            this.sendEmail()
           } else {
             Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
           }
         })
     }
   }
+  // todo: send email
+  public sendEmail = () => {
+    this.master.sendPost('mails/send', { emailAddress: this.selected['patientId'].email, _id: this.selected['_id'] }, res => {
+      if (res) {
+        if (res.status == 200) {
+          this.loading = false
+          // after save
+          this.pending.splice(this.selected['index'], 1);
+          (document.getElementById('close-capture') as HTMLButtonElement).click();
+          this.information.reset();
+          Swal.fire({ title: 'Success!', text: res.data.message, icon: 'success', confirmButtonText: 'Ok' })
+        } else {
+          Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
+        }
+      } else {
+        Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
+      }
+    })
+  }
   // select a pending card
   public getSelected = (e, index): void => {
-    this.selected['index'] = index
     this.selected = e.value;
+    this.selected['index'] = index
     if (e.isDelete) {
-      
       this.delete(this.selected['_id'])
     } else {
       (document.getElementById('capture') as HTMLButtonElement).click()
@@ -108,16 +123,16 @@ export class PendingComponent implements OnInit {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this.loading = true
-        
+
         this.master.sendDelete('reports/delete', id, res => {
-            this.loading = false
-            if (res.status == 200) {
-              this.pending.splice(this.selected['index'], 1);
-              Swal.fire({ title: 'Delete Success!', text: res.message, icon: 'success', confirmButtonText: 'Ok' })
-            } else {
-              Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
-            }
-          })
+          this.loading = false
+          if (res.status == 200) {
+            this.pending.splice(this.selected['index'], 1);
+            Swal.fire({ title: 'Delete Success!', text: res.message, icon: 'success', confirmButtonText: 'Ok' })
+          } else {
+            Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
+          }
+        })
       }
     })
   }

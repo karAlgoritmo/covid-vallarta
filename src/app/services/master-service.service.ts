@@ -12,7 +12,8 @@ export class MasterServiceService {
   // *******************
   public token = ''
   public headers: object = { headers: { 'Content-Type': 'application/json', "Authorization": this.token } }
-  private host: string = "https://covid-reports-aczl4.ondigitalocean.app/"
+  // private host: string = "https://covid-reports-aczl4.ondigitalocean.app/"
+  private host: string = "http://localhost:8080/"
   // ********************
   // functions
   // *******************
@@ -63,7 +64,6 @@ export class MasterServiceService {
     })
   }
   constructor() {
-    debugger
     this.token = localStorage.getItem('token') ? localStorage.getItem('token') : ''
     this.headers = { headers: { 'Content-Type': 'application/json', "Authorization": this.token } }
 

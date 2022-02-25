@@ -17,7 +17,7 @@ export class ReportsComponent implements OnInit {
   // 
   public data:any={}
   // 
-  public loading:boolean=false
+  public loading:boolean=true
   // ***********************
   // functions
   // **********************
@@ -28,11 +28,6 @@ export class ReportsComponent implements OnInit {
       if(res){
         if(res.status==200){
           this.data=res.data
-          // 
-          
-          this.data['positives']=this.data['stepChart'].filter(el=>el['result']=='positive')
-          this.data['negatives']=this.data['stepChart'].filter(el=>el['result']=='negative')
-          
         }else{
           Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
         }

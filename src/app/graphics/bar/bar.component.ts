@@ -1,6 +1,7 @@
-import { Component, Input, OnInit,SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from '@amcharts/amcharts5/xy'
+import am5themes_Animated from '@amcharts/amcharts5/themes/Animated'
 
 
 @Component({
@@ -9,7 +10,7 @@ import * as am5xy from '@amcharts/amcharts5/xy'
   styleUrls: ['./bar.component.scss']
 })
 export class BarComponent implements OnInit {
-   // ***********************
+  // ***********************
   // variables
   // **********************
   @Input() category = ''
@@ -18,13 +19,15 @@ export class BarComponent implements OnInit {
   // 
   @Input() data = []
   // 
-  @Input() id=null
-   // ***********************
+  @Input() id = null
+  // ***********************
   // functions
   // **********************
   public generate = () => {
     const root = am5.Root.new(this.id);
-
+    root.setThemes([
+      am5themes_Animated.new(root)
+    ]);
     // Create chart
     // https://www.amcharts.com/docs/v5/charts/xy-chart/
     let chart = root.container.children.push(am5xy.XYChart.new(root, {
@@ -99,7 +102,7 @@ export class BarComponent implements OnInit {
     series.appear(100);
     chart.appear(10);
   }
-   // ***********************
+  // ***********************
   // life cycles
   // **********************
   constructor() { }
@@ -113,6 +116,6 @@ export class BarComponent implements OnInit {
     this.generate()
   }
 
-  
+
 
 }

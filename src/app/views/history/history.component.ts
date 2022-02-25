@@ -16,7 +16,7 @@ export class HistoryComponent implements OnInit {
   // 
   public filter: string = ''
   // 
-  public loading:boolean=false
+  public loading:boolean=true
   // 
   public captured=[]
    // 
@@ -82,7 +82,6 @@ export class HistoryComponent implements OnInit {
   // delete
   public deleteHard = (id) => {
     this.loading = true
-    debugger
     this.master.sendDelete('reports/delete',id, res => {
         this.loading = false
         if (res.status == 200) {
@@ -96,7 +95,6 @@ export class HistoryComponent implements OnInit {
   // delete
   public deleteSoft = (id) => {
     this.loading = true
-    debugger
     this.master.sendPost('reports/soft-delete',{id:id}, res => {
         this.loading = false
         if (res.status == 200) {
