@@ -18,7 +18,6 @@ export class DataUserComponent implements OnInit {
   // form of login
   public information = new FormGroup({
     middlename:new FormControl('', []),
-    title:new FormControl('', []),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     dateOfBirth: new FormControl('', [Validators.required]),
@@ -38,8 +37,6 @@ export class DataUserComponent implements OnInit {
         if(res.status==200){
           Swal.fire({ title: 'Complete', text: 'Registration Success !', icon: 'success', confirmButtonText: 'Ok' })
           this.information.reset()
-        }else{
-          Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error', confirmButtonText: 'Ok' })
         }
       })
     }

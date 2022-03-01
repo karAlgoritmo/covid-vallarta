@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { MasterServiceService } from '../../services/master-service.service'
 import { StoreService } from '../../services/store.service'
 import Swal from 'sweetalert2'
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-pending',
@@ -32,6 +33,7 @@ export class PendingComponent implements OnInit {
     result: new FormControl('', [Validators.required]),
     hourOfSample: new FormControl('', [Validators.required]),
     hourReport: new FormControl('', [Validators.required]),
+    removeLogo: new FormControl(false, [Validators.required]),
   })
   // ***********************
   // functions
@@ -71,9 +73,10 @@ export class PendingComponent implements OnInit {
         {
           reportId: this.selected['_id'],
           result: this.information.value['result'],
-          dateOfSample: this.information.value['dateOfSample'] + 'T' + this.information.value['hourOfSample'],
-          dateOfReport: this.information.value['dateReport'] + 'T' + this.information.value['hourReport'],
-          capturedBy: this.store.user['userId']
+          dateOfSample: moment(this.information.value['dateOfSample']+' '+this.information.value['hourOfSample']).format(),
+          dateOfReport: moment(this.information.value['dateReport']+' '+this.information.value['hourReport']).format(),
+          capturedBy: this.store.user['userId'],
+          type: this.information.value['removeLogo']
         }, res => {
           if (res.status == 200) {
             // send email

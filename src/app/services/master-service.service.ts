@@ -23,14 +23,13 @@ export class MasterServiceService {
       callback(res)
     }).catch(error => {
       Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error' })
+      callback(undefined)
     })
   }
 
   public sendPut = (action, params, callback) => {
     axios.put(`${this.host}${action}`, params, this.headers).then(res => {
-      if (res) {
-        callback(res)
-      }
+      callback(res)
     }).catch(error => {
       Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error' })
     })
@@ -38,9 +37,7 @@ export class MasterServiceService {
 
   public sendDelete = (action, params, callback) => {
     axios.delete(`${this.host}${action}/${params}`, this.headers).then(res => {
-      if (res) {
-        callback(res)
-      }
+      callback(res)
     }).catch(error => {
       Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error' })
     })
@@ -48,9 +45,7 @@ export class MasterServiceService {
 
   public sendPatch = (action, params, callback) => {
     axios.patch(`${this.host}${action}`, params, this.headers).then(res => {
-      if (res) {
-        callback(res)
-      }
+      callback(res)
     }).catch(error => {
       Swal.fire({ title: 'Ups!', text: 'Something went wrong, try again', icon: 'error' })
     })

@@ -36,6 +36,7 @@ import { BarComponent } from './graphics/bar/bar.component';
 import { PieComponent } from './graphics/pie/pie.component';
 import { LineComponent } from './graphics/line/line.component'
 import {MatMenuModule} from '@angular/material/menu';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import {MatMenuModule} from '@angular/material/menu';
     NgxQRCodeModule,
     MatDatepickerModule,
     MatSelectModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCheckboxModule
   ],
   providers: [MasterServiceService,StoreService],
   bootstrap: [AppComponent]

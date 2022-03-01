@@ -35,9 +35,7 @@ export class LoginComponent implements OnInit {
             this.master.headers['headers']['Authorization'] = res.data.token
             this.router.navigate(['pending'])
           }
-        } else {
-          this.loading = false
-        }
+        } 
       })
     }
   }

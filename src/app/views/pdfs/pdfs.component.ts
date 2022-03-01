@@ -62,7 +62,7 @@ export class PdfsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    
   }
 
 }
