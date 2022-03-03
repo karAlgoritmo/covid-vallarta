@@ -126,7 +126,7 @@
         </section>
     </div>
     <!-- button -->
-    <footer class="d-flex justify-content-end py-1">
+    <footer class="d-flex justify-content-end py-1" *ngIf="!loading">
         <button (click)="sendEmail()" mat-raised-button color="primary" [disabled]="loading">Send Email
             <mat-icon>send</mat-icon>
             <div class="spinner-grow text-light spinner-grow-sm" role="status" *ngIf="loading">

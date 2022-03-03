@@ -17,7 +17,6 @@ export class DataUserComponent implements OnInit {
   public loading: boolean = false
   // form of login
   public information = new FormGroup({
-    middlename:new FormControl('', []),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     dateOfBirth: new FormControl('', [Validators.required]),
