@@ -19,6 +19,7 @@ export class DataUserComponent implements OnInit {
   public information = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
+    middleName: new FormControl('', [Validators.required]),
     dateOfBirth: new FormControl('', [Validators.required]),
     passportNo: new FormControl('', [Validators.required]),
     gender: new FormControl('1', [Validators.required]),
@@ -33,15 +34,15 @@ export class DataUserComponent implements OnInit {
       this.loading = true
       this.master.sendPost('patients/register', this.information.value, res => {
         this.loading = false
-        if(res.status==200){
+        if (res.status == 200) {
           Swal.fire({ title: 'Complete', text: 'Registration Success !', icon: 'success', confirmButtonText: 'Ok' })
           this.information.reset()
         }
       })
     }
   }
-  test(){
-    
+  test() {
+
   }
   // ***********************
   // life cycles

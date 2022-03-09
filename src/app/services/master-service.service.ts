@@ -13,6 +13,7 @@ export class MasterServiceService {
   public token = ''
   public headers: object = { headers: { 'Content-Type': 'application/json', "Authorization": this.token } }
   // private host: string = "https://covid-reports-aczl4.ondigitalocean.app/"
+  // 
   private host: string = "http://137.184.128.118:8080/"
   // ********************
   // functions
